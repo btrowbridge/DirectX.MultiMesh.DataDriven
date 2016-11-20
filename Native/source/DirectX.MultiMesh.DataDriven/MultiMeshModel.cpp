@@ -8,22 +8,24 @@ using namespace DirectX;
 namespace MultiMesh {
 	const float MultiMeshModel::RotationRate = XM_PI;
 
-	MultiMeshModel::MultiMeshModel(Library::Game & game) : DrawableGameComponent(game)
+	MultiMeshModel::MultiMeshModel(Library::Game & game) 
+		: DrawableGameComponent(game), mVertexShader(), mIndexCount(), mPixelShader(), mWorldMatrix(MatrixHelper::Identity), mAnimationEnabled(true)
 	{
 	}
-	MultiMeshModel::MultiMeshModel(Library::Game & game, const std::shared_ptr<Library::Camera>& camera) : DrawableGameComponent(game, camera)
+	MultiMeshModel::MultiMeshModel(Library::Game & game, const std::shared_ptr<Library::Camera>& camera) 
+		: DrawableGameComponent(game, camera)
 	{
 	}
 	void MultiMeshModel::Initialize()
 	{
 		// Load a compiled vertex shader
 		std::vector<char> compiledVertexShader;
-		Utility::LoadBinaryFile(L"Content\\Shaders\\BasicVS.cso", compiledVertexShader);
+		Utility::LoadBinaryFile(L"Content\\Shaders\\TexturedVS.cso", compiledVertexShader);
 		ThrowIfFailed(mGame->Direct3DDevice()->CreateVertexShader(&compiledVertexShader[0], compiledVertexShader.size(), nullptr, mVertexShader.ReleaseAndGetAddressOf()), "ID3D11Device::CreatedVertexShader() failed.");
 
 		// Load a compiled pixel shader
 		std::vector<char> compiledPixelShader;
-		Utility::LoadBinaryFile(L"Content\\Shaders\\BasicPS.cso", compiledPixelShader);
+		Utility::LoadBinaryFile(L"Content\\Shaders\\TexturedPS.cso", compiledPixelShader);
 		ThrowIfFailed(mGame->Direct3DDevice()->CreatePixelShader(&compiledPixelShader[0], compiledPixelShader.size(), nullptr, mPixelShader.ReleaseAndGetAddressOf()), "ID3D11Device::CreatedPixelShader() failed.");
 
 		// Create an input layout
@@ -84,14 +86,16 @@ namespace MultiMesh {
 		wvp = XMMatrixTranspose(wvp);
 		XMStoreFloat4x4(&mCBufferPerObject.WorldViewProjection, wvp);
 
-		direct3DDeviceContext->VSSetConstantBuffers(0, 2, mConstantBufferPerObjectVS.GetAddressOf());
-		direct3DDeviceContext->VSSetConstantBuffers(1, 2, mConstantBufferPerFrameVS.GetAddressOf());
+		direct3DDeviceContext->VSSetConstantBuffers(0, 1, mConstantBufferPerObjectVS.GetAddressOf());
+
+		//direct3DDeviceContext->VSSetConstantBuffers(0, 2, mConstantBufferPerObjectVS.GetAddressOf());
+		//direct3DDeviceContext->VSSetConstantBuffers(1, 2, mConstantBufferPerFrameVS.GetAddressOf());
 
 		direct3DDeviceContext->PSSetShaderResources(0, 1, mColorTexture.GetAddressOf());
 		direct3DDeviceContext->PSSetSamplers(0, 1, SamplerStates::TrilinearMirror.ReleaseAndGetAddressOf());
 
-		direct3DDeviceContext->PSSetConstantBuffers(0, 2, mConstantBufferPerObjectPS.GetAddressOf());
-		direct3DDeviceContext->PSSetConstantBuffers(1, 2, mConstantBufferPerFramePS.GetAddressOf());
+		//direct3DDeviceContext->PSSetConstantBuffers(0, 2, mConstantBufferPerObjectPS.GetAddressOf());
+		//direct3DDeviceContext->PSSetConstantBuffers(1, 2, mConstantBufferPerFramePS.GetAddressOf());
 
 		direct3DDeviceContext->DrawIndexed(mIndexCount, 0, 0);
 	}

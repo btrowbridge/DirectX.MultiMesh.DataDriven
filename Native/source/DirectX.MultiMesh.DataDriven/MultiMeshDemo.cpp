@@ -24,7 +24,7 @@ namespace MultiMesh
 
 		const float viewWidth = 50.0f;
 		const float viewHeight = 50.0f;
-		auto camera = make_shared<OrthographicCamera>(*this, viewWidth, viewHeight);
+		auto camera = make_shared<PerspectiveCamera>(*this);
 		mComponents.push_back(camera);
 		mServices.AddService(Camera::TypeIdClass(), camera.get());
 
@@ -39,21 +39,9 @@ namespace MultiMesh
 		mGamePad = make_shared<GamePadComponent>(*this);
 		mComponents.push_back(mGamePad);
 		mServices.AddService(GamePadComponent::TypeIdClass(), mGamePad.get());
-
-		auto audioEngine = make_shared<AudioEngineComponent>(*this);
-		mComponents.push_back(audioEngine);
-		mServices.AddService(AudioEngineComponent::TypeIdClass(), audioEngine.get());		
-
-		auto physicsEngine = make_shared<Box2DComponent>(*this);
-		mComponents.push_back(physicsEngine);
-		mServices.AddService(Box2DComponent::TypeIdClass(), physicsEngine.get());
 		
 		auto demo = make_shared<MultiMeshModel>(*this, camera);
 		mComponents.push_back(demo);
-
-		auto physicDebugDraw = make_shared<Box2DDebugDraw>(*this, camera);
-		mComponents.push_back(physicDebugDraw);
-		mServices.AddService(Box2DDebugDraw::TypeIdClass(), physicDebugDraw.get());
 
 		mFpsComponent = make_shared<FpsComponent>(*this);
 		mFpsComponent->Initialize();

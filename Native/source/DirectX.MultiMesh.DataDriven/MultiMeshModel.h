@@ -43,10 +43,12 @@ namespace MultiMesh
 		Microsoft::WRL::ComPtr<ID3D11InputLayout> mInputLayout;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> mVertexBuffer;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> mIndexBuffer;
-		Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerFrameVS;
-		Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerFramePS;
+		
+
+		//Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerFrameVS;
+		//Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerFramePS;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerObjectVS;
-		Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerObjectPS;
+		//Microsoft::WRL::ComPtr<ID3D11Buffer> mConstantBufferPerObjectPS;
 
 		CBufferPerObject mCBufferPerObject;
 
