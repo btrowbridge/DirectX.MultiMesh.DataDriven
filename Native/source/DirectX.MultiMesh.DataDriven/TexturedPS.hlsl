@@ -7,7 +7,6 @@ struct VS_OUTPUT
 {
 	float4 Position : SV_POSITION;
 	float2 TextureCoordinates : TEXCOORD;
-	float3 Normal : NORMAL;
 };
 
 float4 main(VS_OUTPUT IN) : SV_TARGET

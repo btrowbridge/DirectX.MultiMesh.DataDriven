@@ -8,7 +8,7 @@ using namespace Library;
 
 namespace MultiMesh
 {
-	const XMVECTORF32 MultiMeshDemo::BackgroundColor = Colors::Black;
+	const XMVECTORF32 MultiMeshDemo::BackgroundColor = Colors::BlueViolet;
 
 	MultiMeshDemo::MultiMeshDemo(std::function<void*()> getWindowCallback, std::function<void(SIZE&)> getRenderTargetSizeCallback) :
 		Game(getWindowCallback, getRenderTargetSizeCallback), mRenderStateHelper(*this)
@@ -22,11 +22,10 @@ namespace MultiMesh
 		RasterizerStates::Initialize(mDirect3DDevice.Get());
 		SpriteManager::Initialize(*this);
 
-		const float viewWidth = 50.0f;
-		const float viewHeight = 50.0f;
-		auto camera = make_shared<PerspectiveCamera>(*this);
+		auto camera = make_shared<FirstPersonCamera>(*this);
 		mComponents.push_back(camera);
 		mServices.AddService(Camera::TypeIdClass(), camera.get());
+
 
 		mKeyboard = make_shared<KeyboardComponent>(*this);
 		mComponents.push_back(mKeyboard);
@@ -40,7 +39,7 @@ namespace MultiMesh
 		mComponents.push_back(mGamePad);
 		mServices.AddService(GamePadComponent::TypeIdClass(), mGamePad.get());
 		
-		auto demo = make_shared<MultiMeshModel>(*this, camera);
+		auto demo = make_shared<MultiMeshModel>(*this, camera,"Content\\Models\\potion_MediumPoly.obj.bin",1.0f);
 		mComponents.push_back(demo);
 
 		mFpsComponent = make_shared<FpsComponent>(*this);
