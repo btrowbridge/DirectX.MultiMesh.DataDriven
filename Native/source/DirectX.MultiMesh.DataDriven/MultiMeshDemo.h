@@ -3,6 +3,9 @@
 #include "Game.h"
 #include "RenderStateHelper.h"
 
+
+
+
 namespace Library
 {
 	class Camera;
@@ -14,6 +17,28 @@ namespace Library
 
 namespace MultiMesh
 {
+	struct Prototype {
+		std::string model;
+		std::string texture;
+	};
+
+	struct Instance {
+		Prototype prototype;
+		DirectX::XMFLOAT3 position;
+		DirectX::XMFLOAT3 rotation;
+	};
+	
+	class SceneReader : public Library::JsonObjectReader {
+		public:
+			SceneReader(Library::Game& mGame) : JsonObjectReader(mGame) {
+
+			}
+			std::shared_ptr<Library::JsonObject> ReadSceneFromFile(std::wstring jsonFileName) {
+				return this->_Read(jsonFileName);
+			}
+		
+		};
+
 	class MultiMeshDemo final : public Library::Game
 	{
 	public:
@@ -26,8 +51,18 @@ namespace MultiMesh
 
 		void Exit();
 
-	private:		
+	private:	
+
+
+
 		static const DirectX::XMVECTORF32 BackgroundColor;		
+
+		std::vector<Instance> mInstances;
+		std::map<std::string, Prototype> mPrototypes;
+
+		std::shared_ptr<SceneReader> mSceneReader;
+
+		void LoadSceneDescription(Library::JsonObject* jsonFileName);
 
 		Library::RenderStateHelper mRenderStateHelper;
 		std::shared_ptr<Library::KeyboardComponent> mKeyboard;

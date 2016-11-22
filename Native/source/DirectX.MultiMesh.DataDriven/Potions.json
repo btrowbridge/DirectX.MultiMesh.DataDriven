@@ -1,0 +1,37 @@
+{
+  "ModelPrototypes": {
+    "RedPotion": {
+      "ModelFile": "Content\\Models\\potion_MediumPoly.obj.bin",
+      "Textures": {
+        "ColorTextureFile": "Content\\Models\\potion_red.png"
+      }
+    },
+    "BluePotion": {
+      "Model": "Content\\Models\\potion_MediumPoly.obj.bin",
+      "Textures": {
+        "Color": "Content\\Models\\potion_blue.png"
+      }
+
+    },
+    "GreenPotion": {
+      "Model": "Content\\Models\\potion_MediumPoly.obj.bin",
+      "Textures": {
+          "Color": "Content\\Models\\potion_green.png"
+      }
+    }
+  },
+  "ObjectInstance" : {
+    "Prototype" :  "RedPotion",
+    "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "W": 1
+      },
+    "Rotation": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      }
+    }
+  }

@@ -32,9 +32,9 @@ VS_OUTPUT main(VS_INPUT IN)
 
 	OUT.Position = mul(IN.ObjectPosition, WorldViewProjection);
 	OUT.TextureCoordinates = IN.TextureCoordinates;
-	OUT.Normal = mul(float4(IN.Normal,0),World);
+	OUT.Normal = (float3)mul(float4(IN.Normal,0),World);
 	
-	float3 worldPosition = mul(IN.ObjectPosition, World);
+	float3 worldPosition = (float3)mul(IN.ObjectPosition, World);
 	OUT.ViewDirection = normalize(CameraPosition - worldPosition);
 
 	return OUT;

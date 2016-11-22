@@ -17,8 +17,7 @@ namespace MultiMesh
 		RTTI_DECLARATIONS(MultiMeshModel, DrawableGameComponent)
 
 	public:
-		MultiMeshModel(Game& game, const std::shared_ptr<Camera>& camera, const std::string& modelFileName, float scale = 1.0f);
-		MultiMeshModel(Game& game, const shared_ptr<Camera>& camera, const Model& model, float scale = 1.0f);
+		MultiMeshModel(Game& game, const std::shared_ptr<Camera>& camera, const std::string& modelFileName, const std::string& textureFileName, XMFLOAT3 position, XMFLOAT3 rollPitchYaw, float scale = 1.0f);
 		MultiMeshModel(const MultiMeshModel&) = delete;
 		MultiMeshModel& operator=(const MultiMeshModel&) = delete;
 		MultiMeshModel(MultiMeshModel&&) = delete;
@@ -34,6 +33,10 @@ namespace MultiMesh
 		DirectX::XMVECTOR DirectionVector() const;
 		DirectX::XMVECTOR UpVector() const;
 		DirectX::XMVECTOR RightVector() const;
+
+		DirectX::XMFLOAT3 mStartPosition;
+		DirectX::XMFLOAT3 mStartRotation;
+
 
 		bool& DisplayWireframe();
 
@@ -74,9 +77,9 @@ namespace MultiMesh
 		DirectX::XMFLOAT3 mDirection;
 		DirectX::XMFLOAT3 mUp;
 		DirectX::XMFLOAT3 mRight;
+		
 		std::string mModelFileName;
-
-		std::shared_ptr<Model> mModel;
+		std::string mTextureFileName;
 
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> mColorTexture;
 

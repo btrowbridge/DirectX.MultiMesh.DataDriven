@@ -123,3 +123,9 @@
 
 // Library.Desktop
 #include "UtilityWin32.h"
+
+//local
+#include "MultiMeshModel.h"
+#include "JsonHelper.h"
+#include "JsonObject.h"
+#include "JsonObjectReader.h"

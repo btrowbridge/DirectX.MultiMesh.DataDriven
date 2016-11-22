@@ -6,21 +6,11 @@ using namespace Library;
 using namespace DirectX;
 
 namespace MultiMesh {
-		RTTI_DEFINITIONS(MultiMeshModel)
+	RTTI_DEFINITIONS(MultiMeshModel)
 
-	MultiMeshModel::MultiMeshModel(Game& game, const shared_ptr<Camera>& camera, const std::string& modelFileName, float scale) :
-		DrawableGameComponent(game, camera),
-		mModelFileName(modelFileName), mIndexCount(0),
-		mWorldMatrix(MatrixHelper::Identity), mScaleMatrix(MatrixHelper::Identity), mDisplayWireframe(true),
-		mPosition(Vector3Helper::Zero), mDirection(Vector3Helper::Forward), mUp(Vector3Helper::Up), mRight(Vector3Helper::Right)
-	{
-		XMStoreFloat4x4(&mScaleMatrix, XMMatrixScaling(scale, scale, scale));
-		mModel = make_shared<Model>(Library::Model(mModelFileName));
-	}
-
-	MultiMeshModel::MultiMeshModel(Game& game, const shared_ptr<Camera>& camera, const Model& model, float scale) :
-		DrawableGameComponent(game, camera),
-		mModelFileName(), mIndexCount(0), mModel(&model),
+		MultiMeshModel::MultiMeshModel(Game& game, const shared_ptr<Camera>& camera, const std::string& modelFileName, const std::string& textureFileName, XMFLOAT3 position, XMFLOAT3 rollPitchYaw, float scale) :
+		DrawableGameComponent(game, camera), mStartPosition(position), mStartRotation(rollPitchYaw),
+		mModelFileName(modelFileName), mTextureFileName(textureFileName), mIndexCount(0), 
 		mWorldMatrix(MatrixHelper::Identity), mScaleMatrix(MatrixHelper::Identity), mDisplayWireframe(true),
 		mPosition(Vector3Helper::Zero), mDirection(Vector3Helper::Forward), mUp(Vector3Helper::Up), mRight(Vector3Helper::Right)
 	{
@@ -149,6 +139,7 @@ namespace MultiMesh {
 		VertexChunkData vertexChunk = { 0 };
 		UINT previousVertexOffset = 0;
 		UINT previousIndexOffset = 0;
+
 		// Create vertex and index buffers for the model
 		for (auto& mesh : model.Meshes()) {
 
@@ -185,13 +176,16 @@ namespace MultiMesh {
 		ThrowIfFailed(mGame->Direct3DDevice()->CreateBuffer(&indexBufferDesc, &indexSubResourceData, mIndexBuffer.ReleaseAndGetAddressOf()), "ID3D11Device::CreateBuffer() failed.");
 
 		// Load a texture
-		wstring textureName = L"Content\\Textures\\potion_red.png";
+		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+		std::wstring textureName = converter.from_bytes(mTextureFileName);
 	
-		ThrowIfFailed(CreateWICTextureFromFile(mGame->Direct3DDevice(), textureName.c_str(), nullptr, mColorTexture.ReleaseAndGetAddressOf()), "CreateDDSTextureFromFile() failed.");
+		ThrowIfFailed(CreateWICTextureFromFile(mGame->Direct3DDevice(), textureName.c_str(), nullptr, mColorTexture.ReleaseAndGetAddressOf()), "CreateWICTextureFromFile() failed.");
 
 		mKeyboard = reinterpret_cast<KeyboardComponent*>(mGame->Services().GetService(KeyboardComponent::TypeIdClass()));
 
-		
+		//Starting transforms
+		ApplyRotation((XMMatrixRotationRollPitchYaw(mStartRotation.x, mStartRotation.y, mStartRotation.z)));
+		SetPosition(mStartPosition);
 	}
 
 	void MultiMeshModel::Update(const GameTime& gameTime)

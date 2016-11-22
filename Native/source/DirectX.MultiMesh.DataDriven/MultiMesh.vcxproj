@@ -106,7 +106,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Json/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -136,7 +136,7 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Json/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -168,7 +168,7 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Json/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -202,7 +202,7 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Json/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -229,6 +229,9 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="JsonHelper.cpp" />
+    <ClCompile Include="JsonObject.cpp" />
+    <ClCompile Include="JsonObjectReader.cpp" />
     <ClCompile Include="MultiMeshModel.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -240,6 +243,9 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
     <ClCompile Include="MultiMeshDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JsonHelper.h" />
+    <ClInclude Include="JsonObject.h" />
+    <ClInclude Include="JsonObjectReader.h" />
     <ClInclude Include="MultiMeshModel.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="MultiMeshDemo.h" />
@@ -251,6 +257,7 @@ IF EXIST "$(ProjectDir)content" xcopy /E /Y "$(ProjectDir)Content" "$(OutDir)Con
     <None Include="Content\Models\Sphere.obj.bin" />
     <None Include="Content\Models\SpotLightProxy.obj.bin" />
     <None Include="packages.config" />
+    <None Include="Potions.json" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Content\Shaders\BasicPS.hlsl">
