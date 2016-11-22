@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="MultiMeshDemo.cpp" />
+    <ClCompile Include="MultiMeshModel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="MultiMeshDemo.h" />
+    <ClInclude Include="MultiMeshModel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Content\Models\darkfighter6.obj.bin">
+      <Filter>Content\Models</Filter>
+    </None>
+    <None Include="Content\Models\DirectionalLightProxy.obj.bin">
+      <Filter>Content\Models</Filter>
+    </None>
+    <None Include="Content\Models\PointLightProxy.obj.bin">
+      <Filter>Content\Models</Filter>
+    </None>
+    <None Include="Content\Models\Sphere.obj.bin">
+      <Filter>Content\Models</Filter>
+    </None>
+    <None Include="Content\Models\SpotLightProxy.obj.bin">
+      <Filter>Content\Models</Filter>
+    </None>
+    <None Include="Potions.json">
+      <Filter>Json Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Content">
+      <UniqueIdentifier>{7dbc5ac6-384d-4345-909e-e06a79d2242b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Textures">
+      <UniqueIdentifier>{8cd79473-2aec-45a2-abbc-9a71e9e8fe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Models">
+      <UniqueIdentifier>{1686b596-a8fc-4f16-8de9-44176156db91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Shaders">
+      <UniqueIdentifier>{6549bf4c-1b16-45d7-bae2-4c48435867f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json Files">
+      <UniqueIdentifier>{bf12b1bc-8d4e-4dc0-87c0-072bfc712ce0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Content\Shaders\BasicPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\BasicVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\DiffuseLightingDemoPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\DiffuseLightingDemoVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\PointLightingDemoPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\PointLightingDemoVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\SpecularLightingDemoPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\SpecularLightingDemoVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\SpotlightLightingDemoPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Content\Shaders\SpotlightLightingDemoVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturedVS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturedPS.hlsl">
+      <Filter>Content\Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Content\Textures\Ball.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\Earthatday.dds">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\EarthComposite.dds">
+      <Filter>Content\Textures</Filter>
+    </Image>
+    <Image Include="Content\Textures\Paddle.png">
+      <Filter>Content\Textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

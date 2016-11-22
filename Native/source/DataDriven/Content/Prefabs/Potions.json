@@ -3,19 +3,19 @@
     "RedPotion": {
       "ModelFile": "Content\\Models\\potion_MediumPoly.obj.bin",
       "Textures": {
-        "ColorFile": "Content\\Models\\potion_red.png"
+        "ColorFile": "Content\\Textures\\potion_red.png"
       }
     },
     "BluePotion": {
       "ModelFile": "Content\\Models\\potion_MediumPoly.obj.bin",
       "Textures": {
-        "ColorFile": "Content\\Models\\potion_blue.png"
+        "ColorFile": "Content\\Textures\\potion_blue.png"
       }
     },
     "GreenPotion": {
       "ModelFile": "Content\\Models\\potion_MediumPoly.obj.bin",
       "Textures": {
-        "ColorFile": "Content\\Models\\potion_green.png"
+        "ColorFile": "Content\\Textures\\potion_green.png"
       }
     }
   },
